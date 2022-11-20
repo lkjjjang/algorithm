@@ -1,4 +1,33 @@
+import java.util.Arrays;
+
 public class Sort {
+
+    public void quickSortRecursive(int[] nums, int left, int right) {
+        System.out.println("left : " + left + " Right : " + right);
+        System.out.println(Arrays.toString(nums));
+        if (right <= left) {
+            return;
+        }
+
+        int pivotPos = partition(nums, left, right);
+
+        quickSortRecursive(nums, left, pivotPos - 1);
+        quickSortRecursive(nums, pivotPos + 1, right);
+    }
+
+    private int partition(int[] nums, int left, int right) {
+        for (int i = left; i < right; i++) {
+            if (nums[i] < nums[right] + 1) {
+                swap(nums, left, i);
+                left++;
+            }
+        }
+
+        swap(nums, left, right);
+
+        return left;
+    }
+
     public void ascendingBubbleSort(int[] nums) {
 
         for (int i = 0; i < nums.length - 1; i++) {
